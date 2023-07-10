@@ -11,7 +11,7 @@
       <h1>Register</h1>
       <div class="alert">Form Submitted Successfully</div>
   
-      <!-- Section 1 -->
+      <!-- Seção 1 -->
       <fieldset>
         <legend><span class="section">1</span>Your Basic Info</legend>
         <label class="" for="name">Name:</label>
@@ -20,11 +20,11 @@
         <label class="" for="email">Email:</label>
         <input type="email" name="email" value="" id="email" required />
   
-        <label for="password">password:</label>
+        <label for="password">Password:</label>
         <input type="password" name="password" value="" id="password" required />
       </fieldset>
   
-      <!-- section 2 -->
+      <!-- Seção 2 -->
       <fieldset>
         <legend><span class="section">2</span>Profile</legend>
         <label class="" for="bio">Bio:</label>
@@ -52,74 +52,10 @@
           <option value="business">Business</option>
         </select>
   
-        <button type="submit" sendMessage()>Register</button>
-    </form>
+        <button type="submit" id="registerButton">Register</button>
+      </form>
   
-     <script type="module">
-  
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-app.js";
-  
-        const firebaseConfig = {
-            apiKey: "AIzaSyDjFXfPDf82HkZS9tqUsGdNdL2KUPlkcuY",
-            authDomain: "projeto-c9ede.firebaseapp.com",
-            projectId: "projeto-c9ede",
-            storageBucket: "projeto-c9ede.appspot.com",
-            messagingSenderId: "934834339658",
-            appId: "1:934834339658:web:9824fc569ebbecec6c8bb3",
-            measurementId: "G-7BLF24G5N3"
-        };
-  
-        // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-  
-      import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/9.15.0/firebase-database.js";
-  
-  
-  
-      //listen for submit event//(1)
-      document
-        .getElementById('registrationform')
-        .addEventListener('submit', formSubmit);
-  
-      //Submit form(2)
-      function formSubmit(e) {
-        e.preventDefault();
-        // Get Values from the DOM
-        let name = document.querySelector('#name').value;
-        let email = document.querySelector('#email').value;
-        let password = document.querySelector('#password').value;
-        let bio = document.querySelector('#bio').value;
-        let job = document.querySelector('#job').value;
-        let interest = document.querySelector('#interest').value;
-  
-        //send message values(3)
-        sendMessage(name, email, password, bio, job, interest);
-      }
-  
-      //Send Message to Firebase(4)
-      function sendMessage(name, email, password, bio, job, interest) {
-        const database = getDatabase();
-  
-        set(ref(database, 'users/' + Math.floor(Math.random() * 10000000)), {
-          name: name,
-          email: email,
-          password: password,
-          bio: bio,
-          job: job,
-          Interest: interest
-        }).then(() => {
-            //Show Alert Message(5)
-         document.querySelector('.alert').style.display = 'block';
-          //Hide Alert Message After Seven Seconds(6)
-         setTimeout(function () {
-         document.querySelector('.alert').style.display = 'none';
-         }, 7000);
-         document.getElementById('registrationform').reset();
-        }).catch((error) => {
-          alert(error)
-        })
-      }
-    </script>
+      <script src="script.js"></script>
   </body>
   
   </html>
